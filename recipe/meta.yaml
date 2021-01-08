@@ -65,10 +65,11 @@ test:
     - larch
 
   commands:
-    - pytest --pyargs larch
+    - pytest ./tests
 
   requires:
     - pytest
+    - pytest-regressions
     - geopandas
 
 about:
