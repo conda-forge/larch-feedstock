@@ -1,69 +1,50 @@
 {% set name = "larch" %}
-{% set version = "5.7.2" %}
-{% set checksum = "40e41557714f9ee50dc71f119d29d996a9668bb8d720ee5c0bea42b6d3f1e654" %}
-
+{% set version = "6.0.38" %}
+{% set checksum = "5e1fdba4fb53c71e1187176dfe50697c844c4d9403faaf3dfafdc791ff9094bc" %}
+{% set python_min = "3.10" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://github.com/jpn--/{{ name }}/archive/v{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: {{ checksum }}
 
 build:
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
   number: 0
-  skip: true  # [py<39]
-  script:
-    - {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
-
-  build:
-    - {{ compiler('c') }}
-    - llvm-openmp  # [osx]
   host:
-    - python
-    - pip !=22.1
-    - llvm-openmp  # [osx]
-    - cython >=0.29
-    - numpy
-
+    - python {{ python_min }}
+    - pip
+    - setuptools
+    - setuptools-scm
   run:
-    - python {{ python }}
-    - ipython >=7.1
-    - llvm-openmp  # [osx]
-    - {{ pin_compatible('numpy') }}
+    - python >={{ python_min }}
+    - numpy >=1.19
     - scipy >=1.1
-    - pandas >=1.3,<1.5
-    - pytables >=3.4.4
-    - blosc >=1.14.3
-    - matplotlib-base >=3.0
-    - networkx >=2.4
-    - tqdm >=4.28.1
-    - cloudpickle >=0.6.1
-    - appdirs >=1.4
-    - docutils >=0.13.1
-    - jinja2 >=2.10
-    - beautifulsoup4 >=4.6.3
-    - lxml >=4.2.5
-    - seaborn >=0.9.0
-    - scikit-learn >=0.21
-    - joblib
-    - pytest >=4.0
-    - xmle >=0.1.3
-    - addict >=2.2.1
-    - pyyaml
-    - pillow
-    - xlsxwriter
-    - openpyxl
-    - pydot
+    - pandas >=1.5
     - pyarrow
-    - numba
     - xarray
-    - altair
+    - numba >=0.60
+    - numexpr
+    - filelock
+    - dask
+    - networkx
     - addicty
-    - sharrow >=2.0
+    - xmle >=0.1.25
+    - rich
+    - sparse
+    - jinja2 >=2.10
+    - xlsxwriter
+    - zarr
+    - tabulate
+    - altair
+    - vl-convert-python
+    - pydot
 
 test:
   source_files:
@@ -76,13 +57,19 @@ test:
     - pytest ./tests
 
   requires:
+    - python {{ python_min }}
     - pytest
     - pytest-regressions
     - geopandas
     - nbmake
+    - jax
+    - pytables
+    - openmatrix
+    - matplotlib
+    - seaborn    
 
 about:
-  home: https://larch.newman.me
+  home: https://larch.driftless.xyz
   license: GPL-3.0-or-later
   license_family: GPL
   license_file: LICENSE
@@ -93,8 +80,8 @@ about:
     choice models. It is designed to integrate with NumPy and Pandas to facilitate 
     fast processing of linear-in-parameters discrete choice models. 
 
-  doc_url: https://larch.newman.me
-  dev_url: https://github.com/jpn--/larch
+  doc_url: https://larch.driftless.xyz
+  dev_url: https://github.com/driftlesslabs/larch
 
 extra:
   recipe-maintainers:
