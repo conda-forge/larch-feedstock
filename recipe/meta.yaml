@@ -62,6 +62,14 @@ test:
     - pytest-regressions
     - geopandas
     - nbmake
+    - jax
+    - pytables
+    - openmatrix
+    - matplotlib
+    - seaborn
+    - pip:
+      - xlogit
+    
 
 about:
   home: https://larch.driftless.xyz
