@@ -17,12 +17,12 @@ build:
 
 requirements:
   host:
-    - python
+    - python {{ python_min }}
     - pip
     - setuptools
     - setuptools-scm
   run:
-    - python
+    - python >={{ python_min }}
     - numpy >=1.19
     - scipy >=1.1
     - pandas >=1.5
@@ -56,6 +56,7 @@ test:
     - pytest ./tests
 
   requires:
+    - python {{ python_min }}
     - pytest
     - pytest-regressions
     - geopandas
