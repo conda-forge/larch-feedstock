@@ -1,6 +1,6 @@
 {% set name = "larch" %}
-{% set version = "6.0.38" %}
-{% set checksum = "5e1fdba4fb53c71e1187176dfe50697c844c4d9403faaf3dfafdc791ff9094bc" %}
+{% set version = "6.0.39" %}
+{% set checksum = "b6e9a5b33e41ae857c4f45cd20e436bcfa6545818f2b74ac60cf2add24847659" %}
 {% set python_min = "3.10" %}
 
 package:
@@ -66,7 +66,7 @@ test:
     - pytables
     - openmatrix
     - matplotlib
-    - seaborn    
+    - seaborn
 
 about:
   home: https://larch.driftless.xyz
