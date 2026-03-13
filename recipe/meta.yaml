@@ -45,6 +45,7 @@ requirements:
     - altair
     - vl-convert-python
     - pydot
+    - sharrow >=2.15
 
 test:
   source_files:
