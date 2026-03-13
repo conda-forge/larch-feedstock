@@ -1,6 +1,6 @@
 {% set name = "larch" %}
-{% set version = "6.0.41" %}
-{% set checksum = "e481b1aec37ee3e9f7e83f1333b85d12bca71bba8abd2843bddf0dc92d0c7118" %}
+{% set version = "6.0.46" %}
+{% set checksum = "be78a4196a6c5cbe6300ef6d7718406fab545799d8262af18f6f20021115cb5c" %}
 {% set python_min = "3.10" %}
 
 package:
@@ -45,6 +45,7 @@ requirements:
     - altair
     - vl-convert-python
     - pydot
+    - sharrow >=2.15
 
 test:
   source_files:
